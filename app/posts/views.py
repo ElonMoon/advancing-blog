@@ -8,7 +8,7 @@ from .forms import PostForm
 def post_list(request):
     queryset = Post.objects.all()
     context = {'posts': queryset}
-    return render(request, 'index.html', context)
+    return render(request, 'post_list.html', context)
 
 
 def post_create(request):
