@@ -6,8 +6,11 @@
 </head>
 <body>
     {% for post in posts %}
-        {{post.title}}
-        {{post.content}}
+        <a href="{% url 'detail' post_id=post.id %}">{{ post.title }}</a><br>
+        {{ post.content }}<br>
+        {{ post.timestamp }}<br>
+        {{ post.updated }}<br>
+        {{ post.id }}<br>
         <br>
     {% endfor %}
 </body>
