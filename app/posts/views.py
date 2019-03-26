@@ -1,17 +1,24 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Post
 
 
 def post_list(request):
-    return HttpResponse('<p>포스트 리스트입니다</p>')
+    queryset = Post.objects.all()
+    context = {'posts': queryset}
+    return render(request, 'index.html', context)
 
 
 def post_create(request):
     return HttpResponse('<p>포스트 생성입니다</p>')
 
 
-def post_detail(request):
-    return HttpResponse('<p>포스트 하나입니다</p>')
+def post_detail(request, post_id=None):
+    instance = get_object_or_404(Post, id=post_id)
+    context = {
+        'post': instance,
+    }
+    return render(request, 'post_detail.html', context)
 
 
 def post_update(request):
